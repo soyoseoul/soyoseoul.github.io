@@ -7,15 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #eef3ee;
-    --warm-white: #f4f8f4;
-    --charcoal: #2a2e2a;
-    --brown: #5a7a5e;
-    --dusty-rose: #7eab82;
-    --sage: #a8c5aa;
-    --film-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-  }
+
+:root {
+  --cream: #f0f6f0;
+  --warm-white: #f7faf7;
+  --charcoal: #2a2e2a;
+  --brown: #6a9a6e;
+  --dusty-rose: #8dc491;
+  --sage: #b8d4ba;
+}
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -127,7 +127,7 @@
     font-size: 0.88rem;
     line-height: 2;
     color: #6b6560;
-    max-width: 340px;
+    max-width: 460px;
     margin-bottom: 3rem;
   }
 
@@ -154,7 +154,7 @@
     overflow: hidden;
     background: var(--cream);
   }
- 
+
   .hero-photo-grid {
     position: absolute;
     inset: 0;
@@ -194,9 +194,9 @@
   .ph4 { background: #d4e4d4; }
 
   .hero-badge {
-    position: absolute;
-    bottom: 2.5rem;
-    left: -1.2rem;
+     position: absolute;
+     bottom: 2.5rem;
+     right: 1.5rem;
     background: var(--warm-white);
     border: 1px solid rgba(122,100,85,0.2);
     padding: 1rem 1.6rem;
@@ -313,73 +313,51 @@
     color: var(--charcoal);
   }
 
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 8px;
-  }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
 
-  .gallery-item {
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-  }
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+}
 
-  .gallery-item:nth-child(1) { grid-row: span 2; }
-  .gallery-item:nth-child(5) { grid-column: span 2; }
+.gallery-thumb {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
 
-  .gallery-thumb {
-    width: 100%;
-    aspect-ratio: 3/4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.5s ease;
-  }
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
 
-  .gallery-item:nth-child(1) .gallery-thumb { aspect-ratio: 3/5; }
-  .gallery-item:nth-child(5) .gallery-thumb { aspect-ratio: 16/7; }
+.gallery-item:hover .gallery-thumb img {
+  transform: scale(1.08);
+}
 
-  .gallery-item:hover .gallery-thumb { transform: scale(1.04); }
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(42,58,44,0);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
 
-  .gallery-thumb svg { opacity: 0.18; width: 40px; }
+.gallery-item:hover .gallery-overlay {
+  background: rgba(255,255,255,0.2);
+}
 
-  /* warm palette for gallery */
-  .gt1 { background: #cddacd; }
-  .gt2 { background: #c4d4c4; }
-  .gt3 { background: #cad8ca; }
-  .gt4 { background: #d4e0d4; }
-  .gt5 { background: #beccbe; }
-  .gt6 { background: #b8c8b8; }
-
-  .gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(44,42,39,0);
-    display: flex;
-    align-items: flex-end;
-    padding: 1.2rem;
-    transition: background 0.3s;
-  }
-
-  .gallery-item:hover .gallery-overlay { background: rgba(44,42,39,0.28); }
-
-  .gallery-tag {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--warm-white);
-    opacity: 0;
-    transform: translateY(6px);
-    transition: all 0.3s;
-    letter-spacing: 0.1em;
-  }
-
-  .gallery-item:hover .gallery-tag {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   /* ── PRICING ── */
   #pricing {
@@ -864,21 +842,20 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left fade-up">
-    <p class="hero-eyebrow">Portrait · Moment · Seoul</p>
-    <h1 class="hero-title">
-      소요사진관
+    <p class="hero-eyebrow">Portrait · Moment · ID photo</p>
+<img src="images/logo.png" alt="소요사진관" style="max-width: 280px; width: 100%;">
     </h1>
     <p class="hero-desc">
       편안한 분위기에서 당신의 가장 자연스러운 순간을 담습니다.<br>
       충분한 촬영과 만족스러운 수정으로 얻을 수 있는 인생 증명사진.
     </p>
-    <a href="http://talk.naver.com/wg30zoh?frm=mnmb&frm=nmb_detail" class="btn-primary">예약 문의하기</a>
+    <a href="http://talk.naver.com/wg30zoh?frm=mnmb&frm=nmb_detail" class="btn-primary">예약 문의하기 (네이버톡톡) </a>
   </div>
 <div class="hero-right">
   <img src="images/01.jpg" style="width:100%; height:100%; object-fit:cover; display:block;">
 </div>
     <div class="hero-badge">
-      송파사진관<br>
+       송파사진관<br>
        잠실사진관<br>
        석촌사진관
     </div>
@@ -920,53 +897,23 @@
   <div class="gallery-header fade-up">
     <div>
       <p class="section-label">Gallery</p>
-      <h2 class="section-title">소요의 기록들</h2>
-    </div>
-    <div class="gallery-filter">
-      <button class="filter-btn active">전체</button>
-      <button class="filter-btn">프로필</button>
-      <button class="filter-btn">커플</button>
-      <button class="filter-btn">가족</button>
+      <h2 class="section-title">소요의 기록들🌿</h2>
+            <p class="pricing-note-warn">모든 사진은 참고용으로만 봐주시길 부탁드리겠습니다.</p>
+
     </div>
   </div>
   <div class="gallery-grid fade-up">
-    <div class="gallery-item">
-   <div class="gallery-thumb gt1">
-  <img src="images/photo1.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-      <div class="gallery-overlay"><span class="gallery-tag">Portrait · 2024</span></div>
-    </div>
-    <div class="gallery-item">
-<div class="gallery-thumb gt2">
-  <img src="images/photo2.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-      <div class="gallery-overlay"><span class="gallery-tag">Couple · Film</span></div>
-    </div>
-    <div class="gallery-item">
-<div class="gallery-thumb gt3">
-  <img src="images/photo3.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-      <div class="gallery-overlay"><span class="gallery-tag">Family · 봄</span></div>
-    </div>
-    <div class="gallery-item">
-<div class="gallery-thumb gt4">
-  <img src="images/photo4.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-      <div class="gallery-overlay"><span class="gallery-tag">Profile · 졸업</span></div>
-    </div>
-    <div class="gallery-item">
-<div class="gallery-thumb gt5">
-  <img src="images/photo5.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-      <div class="gallery-overlay"><span class="gallery-tag">Outdoor · Natural</span></div>
-    </div>
-    <div class="gallery-item">
-<div class="gallery-thumb gt6">
-  <img src="images/photo6.jpg" style="width:100%; height:100%; object-fit:cover;">
-</div>
-      <div class="gallery-overlay"><span class="gallery-tag">Studio · Classic</span></div>
-    </div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/03.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/04.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/05.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/06.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/07.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/08.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/09.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/10.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
+    <div class="gallery-item"><div class="gallery-thumb"><img src="images/11.jpg" alt="소요사진관 갤러리"></div><div class="gallery-overlay"></div></div>
   </div>
+
 </section>
 
 <!-- PRICING -->
@@ -989,7 +936,7 @@
         <li><span class="price-item-name">주민등록증</span><span class="price-item-price">30,000원</span></li>
         <li><span class="price-item-name">여권 / 운전</span><span class="price-item-price">30,000원</span></li>
         <li><span class="price-item-name">비자</span><span class="price-item-price">30,000원</span></li>
-        <li><span class="price-item-name">이력서</span><span class="price-item-price">40,000원</span></li>
+        <li><span class="price-item-name">이력서(정장합성 가능)</span><span class="price-item-price">40,000원</span></li>
         <li><span class="price-item-name">명함판</span><span class="price-item-price">40,000원</span></li>
         <li><span class="price-item-name">사원증</span><span class="price-item-price">50,000원</span></li>
 
@@ -1063,7 +1010,7 @@
         </div>
         <div>
           <p class="contact-label">Location</p>
-          <p class="contact-value">서울 송파구 (석촌역 도보 2분)<br>송파역 / 헬리오시티 도보 5분<br>무료 주차 가능 (사전 연락 요망)</p>
+          <p class="contact-value">서울시 송파구 석촌동 177 (석촌역 도보 2분)<br>서울특별시 송파구 백제고분로39길 18, 1층<br>무료 주차 가능 (사전 연락 요망)</p>
         </div>
       </div>
       <div class="contact-item">
@@ -1087,7 +1034,7 @@
           <p class="contact-label">Hours</p>
           <p class="contact-value">
             월·화·수·목·금·토·일 &nbsp;10:00 – 19:00<br>
-            <b><span style="font-size:0.78rem;color:#7a9a7c;">※ 일요일 격주 정기 휴무</span><br>
+            <b><span style="font-size:0.78rem;color:#ae4646;">※ 일요일 격주 정기 휴무</span><br>
             
           </p>
         </div>
@@ -1098,13 +1045,15 @@
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
           </svg>
         </div>
-        <div>
-          <p class="contact-label">Online</p>
-          <p class="contact-value">
-            <a href="https://blog.naver.com/soyoseoul" target="_blank" style="color:var(--brown);text-decoration:none;">네이버 블로그</a><br>
-            <a href="https://www.instagram.com/soyoseoul_" target="_blank" style="color:var(--brown);text-decoration:none;">인스타그램</a><br>
-          </p>
-        </div>
+<div>
+  <p class="contact-label">Online</p>
+  <p class="contact-value">
+    <a href="https://blog.naver.com/soyoseoul" target="_blank" style="color:inherit;text-decoration:none;font-weight:300;">네이버 블로그</a><br>
+    <a href="https://www.instagram.com/soyoseoul_" target="_blank" style="color:inherit;text-decoration:none;font-weight:300;">인스타그램 @soyoseoul_</a><br>
+    <span style="font-weight:300;">kakaotalk : soyoseoul</span><br>
+    <span style="font-weight:300;">e-mail : soyoseoul@naver.com</span>
+  </p>
+</div>
       </div>
     </div>
   </div>
@@ -1149,6 +1098,13 @@
     </div>
   </div>
 </section>
+
+<!-- SEO KEYWORDS -->
+<div style="background:#2a3a2c; padding: 2rem 5rem; text-align:center; border-top: 1px solid rgba(255,255,255,0.06);">
+  <p style="font-size:0.72rem; color:rgba(255,255,255,0.3); letter-spacing:0.12em; line-height:2.2;">
+    석촌역사진관 · 송파역사진관 · 송파증명사진 · 잠실사진관 · 석촌호수사진관 · 송파구사진관 · 헬리오시티사진관 · 송파여권사진 · 잠실증명사진 · 송파프로필사진
+  </p>
+</div>
 
 <!-- FOOTER -->
 <footer>
